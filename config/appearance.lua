@@ -57,6 +57,7 @@ return {
    command_palette_font_size = 12,
    command_palette_rows = 25,
 
+
    window_background_opacity = 0.8,
    text_background_opacity = 1.0,
    -- win32_system_backdrop = "Acrylic",

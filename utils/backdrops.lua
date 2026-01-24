@@ -86,7 +86,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.85,
+         opacity = 1,
       },
    }
 end
@@ -102,7 +102,7 @@ function BackDrops:_create_focus_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.25,
+         opacity = 0.75,
       },
    }
 end
@@ -144,7 +144,7 @@ function BackDrops:_set_focus_opt(window)
             width = '120%',
             vertical_offset = '-10%',
             horizontal_offset = '-10%',
-            opacity = 0.25,
+            opacity = 0.75,
          },
       },
       enable_tab_bar = window:effective_config().enable_tab_bar,
