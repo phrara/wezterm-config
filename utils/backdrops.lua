@@ -78,6 +78,7 @@ function BackDrops:_create_opts()
       {
          source = { File = self.images[self.current_idx] },
          horizontal_align = 'Center',
+         opacity = 0.5,
       },
       {
          source = { Color = colors.background },
@@ -85,7 +86,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.96,
+         opacity = 0.85,
       },
    }
 end
@@ -101,7 +102,7 @@ function BackDrops:_create_focus_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 1,
+         opacity = 0.25,
       },
    }
 end
@@ -143,7 +144,7 @@ function BackDrops:_set_focus_opt(window)
             width = '120%',
             vertical_offset = '-10%',
             horizontal_offset = '-10%',
-            opacity = 1,
+            opacity = 0.25,
          },
       },
       enable_tab_bar = window:effective_config().enable_tab_bar,

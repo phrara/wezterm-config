@@ -80,6 +80,12 @@ local keys = {
    -- window: spawn windows
    { key = 'n',          mods = mod.SUPER,     action = act.SpawnWindow },
 
+   -- Fonts Size
+   { key = '+',      mods = 'CTRL',  action = act.IncreaseFontSize },
+   { key = '-',      mods = 'CTRL',  action = act.DecreaseFontSize },
+   { key = '0',      mods = 'CTRL',  action = act.ResetFontSize },
+
+
    -- window: zoom window
    {
       key = '-',
@@ -95,7 +101,7 @@ local keys = {
       end)
    },
    {
-      key = '=',
+      key = '+',
       mods = mod.SUPER,
       action = wezterm.action_callback(function(window, _pane)
          local dimensions = window:get_dimensions()
@@ -109,7 +115,7 @@ local keys = {
    },
    {
       key = 'Enter',
-      mods = mod.SUPER_REV,
+      mods = mod.SUPER,
       action = wezterm.action_callback(function(window, _pane)
          window:maximize()
       end)
@@ -154,7 +160,7 @@ local keys = {
          end),
       }),
    },
-   {
+   { -- 专注模式
       key = 'b',
       mods = mod.SUPER,
       action = wezterm.action_callback(function(window, _pane)
@@ -176,7 +182,7 @@ local keys = {
    },
 
    -- panes: zoom+close pane
-   { key = 'Enter', mods = mod.SUPER,     action = act.TogglePaneZoomState },
+   { key = 'Enter', mods = mod.SUPER_REV,     action = act.TogglePaneZoomState },
    { key = 'w',     mods = mod.SUPER,     action = act.CloseCurrentPane({ confirm = false }) },
 
    -- panes: navigation
@@ -244,6 +250,24 @@ local mouse_bindings = {
       event = { Up = { streak = 1, button = 'Left' } },
       mods = 'CTRL',
       action = act.OpenLinkAtMouseCursor,
+   },
+   {
+      event = { Down = { streak = 1, button = 'Right' } },
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        local sel = window:get_selection_text_for_pane(pane)
+        if sel ~= '' then
+          window:perform_action(
+            wezterm.action.CopyTo 'Clipboard',
+            pane
+          )
+        else
+          window:perform_action(
+            wezterm.action.PasteFrom 'Clipboard',
+            pane
+          )
+        end
+      end),
    },
 }
 

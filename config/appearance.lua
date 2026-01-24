@@ -1,10 +1,11 @@
 local gpu_adapters = require('utils.gpu-adapter')
 local backdrops = require('utils.backdrops')
 local colors = require('colors.custom')
+local wezterm = require('wezterm')
 
 return {
    max_fps = 120,
-   front_end = 'WebGpu', ---@type 'WebGpu' | 'OpenGL' | 'Software'
+   front_end = 'OpenGL', ---@type 'WebGpu' | 'OpenGL' | 'Software'
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
    -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Dx12', 'IntegratedGpu'),
@@ -15,7 +16,7 @@ return {
    animation_fps = 120,
    cursor_blink_ease_in = 'EaseOut',
    cursor_blink_ease_out = 'EaseOut',
-   default_cursor_style = 'BlinkingBlock',
+   default_cursor_style = 'BlinkingBar',
    cursor_blink_rate = 650,
 
    -- color scheme
@@ -23,6 +24,21 @@ return {
 
    -- background: pass in `true` if you want wezterm to start with focus mode on (no bg images)
    background = backdrops:initial_options(false),
+
+--    background = {
+--       {
+--          source = { File = wezterm.config_dir .. "/backdrops/wallhaven-m98zg9.jpg" },
+--          horizontal_align = 'Center',
+--          opacity = 0.5,
+--       },
+--       {
+--          source = { Color = "rgba(10, 12, 16, 0.8)" },
+--          height = "100%",
+--          width = "100%",
+--          opacity = 0.85,
+--       },
+--   },
+   -- background = nil,
 
    -- scrollbar
    enable_scroll_bar = true,
@@ -41,6 +57,10 @@ return {
    command_palette_font_size = 12,
    command_palette_rows = 25,
 
+   window_background_opacity = 0.8,
+   text_background_opacity = 1.0,
+   -- win32_system_backdrop = "Acrylic",
+   -- win32_acrylic_accent_color = '#1A1B26',
    -- window
    window_padding = {
       left = 0,
@@ -52,6 +72,7 @@ return {
    window_close_confirmation = 'NeverPrompt',
    window_frame = {
       active_titlebar_bg = '#090909',
+      -- active_titlebar_bg = 'none',
       -- font = fonts.font,
       -- font_size = fonts.font_size,
    },
